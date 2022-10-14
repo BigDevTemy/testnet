@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { getByTestId } from '@testing-library/react';
+import axios from 'axios';
 
 function App() {
 
@@ -13,13 +13,14 @@ function App() {
   },[])
 
   const getTest = ()=>{
-    fetch('https://jupit.app/testnet',{
+    fetch('https://myjupit.herokuapp.com/testnet',{
       headers:{
         'Content-Type':'application/json',
 
       },
       method:'GET'
     })
+    .then(res=>res.json())
     .then(result=>console.log(result))
     .catch((err)=>{
       console.log('FirstCall',err)
@@ -27,21 +28,23 @@ function App() {
   }
   const CheckLogin = (e)=>{
     e.preventDefault();
-    console.log(email,password)
-    fetch('https://jupit.app/users/login',{
+    
+    axios({
+      method:"POST",
+      url:'https://myjupit.herokuapp.com/users/login',
       headers:{
-        'Content-Type':'application/json',
-
+        "Content-Type":"application/json"
       },
-      method:'POST',
-      body:JSON.stringify({email,password})
-
+      data:{email:email,password:password}
     })
-    .then((res)=>res.json())
-    .then(result=>console.log(result))
+    .then(res=>{
+      console.log(res)
+    })
     .catch((err)=>{
       console.log(err)
     })
+
+   
   }
   return (
     <div className="App">
