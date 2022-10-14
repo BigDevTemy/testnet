@@ -13,7 +13,7 @@ function App() {
   },[])
 
   const getTest = ()=>{
-    fetch('https://myjupit.herokuapp.com/testnet',{
+    fetch('https://jupit.app/testnet',{
       headers:{
         'Content-Type':'application/json',
 
@@ -37,11 +37,12 @@ function App() {
       },
       data:{email:email,password:password}
     })
+    .then(result=>result.json())
     .then(res=>{
       console.log(res.data)
     })
     .catch((err)=>{
-      console.log(err)
+      console.log(err.response)
     })
 
    
