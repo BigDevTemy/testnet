@@ -38,7 +38,7 @@ function App() {
       data:{email:email,password:password}
     })
     .then(res=>{
-      console.log(res)
+      console.log(res.data)
     })
     .catch((err)=>{
       console.log(err)
