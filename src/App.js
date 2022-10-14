@@ -31,7 +31,7 @@ function App() {
     
     axios({
       method:"POST",
-      url:'https://myjupit.herokuapp.com/users/login',
+      url:'https://jupit.app/users/login',
       headers:{
         "Content-Type":"application/json"
       },
